@@ -1,131 +1,190 @@
 // Kelas utama untuk mengelola aplikasi Classnya
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class App {
-    private static Scanner scanner = new Scanner(System.in);
-    private static ArrayList<Classnya> dataClassnya = new ArrayList<>(); // Menyimpan daftar produk
+// Kelas Overclock (Super Class untuk CPU & GPU)
+class Overclock {
+    protected double maxOverclock;
 
-    // Menampilkan seluruh data produk yang ada di Classnya
-    public static void showData() {
-        if (dataClassnya.isEmpty()) {
-            System.out.println("Data masih kosong. Silahkan isi.");
-            return;
-        }
-        for (Classnya pet : dataClassnya) {
-            System.out.println("+----------------------------------+");
-            System.out.println("ID             : " + pet.getID());
-            System.out.println("Nama Produk    : " + pet.getNamaProduk());
-            System.out.println("Kategori       : " + pet.getKategori());
-            System.out.println("Harga          : " + pet.getHarga());
-            System.out.println("+----------------------------------+");
+    public Overclock(double maxOverclock) {
+        this.maxOverclock = maxOverclock;
+    }
+
+    public double getMaxOverclock() {
+        return maxOverclock;
+    }
+}
+
+// Kelas CPU
+class Cpu extends Overclock {
+    private int jumlahCore;
+    private double kecepatanGHz;
+    private String merk, nama;
+
+    public Cpu(int jumlahCore, double kecepatanGHz, double maxOverclock, String merk, String nama) {
+        super(maxOverclock);
+        this.jumlahCore = jumlahCore;
+        this.kecepatanGHz = kecepatanGHz;
+        this.merk = merk;
+        this.nama = nama;
+    }
+
+    public int getJumlahCore() { return jumlahCore; }
+    public double getKecepatanGHz() { return kecepatanGHz; }
+    public String getMerk() { return merk; }
+    public String getNama() { return nama; }
+}
+
+// Kelas GPU
+class Gpu extends Overclock {
+    private int vramGB;
+    private String merk, nama;
+
+    public Gpu(int vramGB, double maxOverclock, String merk, String nama) {
+        super(maxOverclock);
+        this.vramGB = vramGB;
+        this.merk = merk;
+        this.nama = nama;
+    }
+
+    public int getVramGB() { return vramGB; }
+    public String getMerk() { return merk; }
+    public String getNama() { return nama; }
+}
+
+// Kelas RAM
+class Ram {
+    private int kapasitasGB;
+    private String ddr, merk, nama;
+
+    public Ram(int kapasitasGB, String ddr, String merk, String nama) {
+        this.kapasitasGB = kapasitasGB;
+        this.ddr = ddr;
+        this.merk = merk;
+        this.nama = nama;
+    }
+
+    public int getKapasitasGB() { return kapasitasGB; }
+    public String getDdr() { return ddr; }
+    public String getMerk() { return merk; }
+    public String getNama() { return nama; }
+}
+
+// Kelas Storage
+class Storage {
+    private int kapasitasGB;
+    private String tipeDrive, merk, nama;
+
+    public Storage(int kapasitasGB, String tipeDrive, String merk, String nama) {
+        this.kapasitasGB = kapasitasGB;
+        this.tipeDrive = tipeDrive;
+        this.merk = merk;
+        this.nama = nama;
+    }
+
+    public int getKapasitasGB() { return kapasitasGB; }
+    public String getTipeDrive() { return tipeDrive; }
+    public String getMerk() { return merk; }
+    public String getNama() { return nama; }
+}
+
+// Kelas PSU
+class Psu {
+    private int watt;
+    private String sertifikasi, merk, nama;
+
+    public Psu(int watt, String sertifikasi, String merk, String nama) {
+        this.watt = watt;
+        this.sertifikasi = sertifikasi;
+        this.merk = merk;
+        this.nama = nama;
+    }
+
+    public int getWatt() { return watt; }
+    public String getSertifikasi() { return sertifikasi; }
+    public String getMerk() { return merk; }
+    public String getNama() { return nama; }
+}
+
+// Kelas Komputer
+
+class Komputer {
+    private String nama;
+    private Cpu cpu;
+    private Gpu gpu;
+    private ArrayList<Ram> ramList;
+    private ArrayList<Storage> storageList;
+    private Psu psu;
+
+    public Komputer(String nama, Cpu cpu, Gpu gpu, ArrayList<Ram> ramList, ArrayList<Storage> storageList, Psu psu) {
+        this.nama = nama;
+        this.cpu = cpu;
+        this.gpu = gpu;
+        this.ramList = ramList;
+        this.storageList = storageList;
+        this.psu = psu;
+    }
+
+    public void addRAM(Ram newRam) {
+        ramList.add(newRam);
+        System.out.println("RAM " + newRam.getNama() + " berhasil ditambahkan.");
+    }
+
+    public void addStorage(Storage newStorage) {
+        storageList.add(newStorage);
+        System.out.println("Storage " + newStorage.getNama() + " berhasil ditambahkan.");
+    }
+
+    public void removeRAM(int index) {
+        if (index >= 0 && index < ramList.size()) {
+            System.out.println("RAM " + ramList.get(index).getNama() + " telah dilepas.");
+            ramList.remove(index);
+        } else {
+            System.out.println("Index RAM tidak valid!");
         }
     }
 
-    // Menambahkan data produk baru ke dalam daftar
-    public static void addData() {
-        System.out.print("ID: ");
-        String ID = scanner.next();
-        
-        // Cek apakah ID sudah ada di dalam daftar
-        for (Classnya pet : dataClassnya) {
-            if (pet.getID().equals(ID)) {
-                System.out.println("ID sudah digunakan!");
-                return;
-            }
+    public void removeStorage(int index) {
+        if (index >= 0 && index < storageList.size()) {
+            System.out.println("Storage " + storageList.get(index).getNama() + " telah dilepas.");
+            storageList.remove(index);
+        } else {
+            System.out.println("Index Storage tidak valid!");
         }
-        
-        System.out.print("Nama: ");
-        String namaProduk = scanner.next();
-        System.out.print("Kategori: ");
-        String kategori = scanner.next();
-        System.out.print("Harga: ");
-        int harga = scanner.nextInt();
-
-        // Buat objek baru dan tambahkan ke daftar
-        Classnya pet = new Classnya();
-        pet.setData(ID, namaProduk, kategori, harga);
-        dataClassnya.add(pet);
-        System.out.println("Data berhasil ditambahkan!");
     }
 
-    // Mengubah data produk berdasarkan ID
-    public static void changeData() {
-        System.out.print("Masukkan ID data yang ingin diubah: ");
-        String ID = scanner.next();
-        
-        for (Classnya pet : dataClassnya) {
-            if (pet.getID().equals(ID)) {
-                System.out.print("Nama baru: ");
-                String namaProduk = scanner.next();
-                System.out.print("Kategori baru: ");
-                String kategori = scanner.next();
-                System.out.print("Harga baru: ");
-                int harga = scanner.nextInt();
-                pet.setData(ID, namaProduk, kategori, harga);
-                System.out.println("Data berhasil diubah!");
-                return;
-            }
-        }
-        System.out.println("Produk dengan ID " + ID + " tidak ditemukan!");
+    public void changeCPU(Cpu newCPU) {
+        cpu = newCPU;
+        System.out.println("CPU berhasil diganti menjadi " + newCPU.getNama() + ".");
     }
 
-    // Menghapus data produk berdasarkan ID
-    public static void deleteData() {
-        System.out.print("Masukkan ID data yang ingin dihapus: ");
-        String ID = scanner.next();
-        
-        for (int i = 0; i < dataClassnya.size(); i++) {
-            if (dataClassnya.get(i).getID().equals(ID)) {
-                dataClassnya.remove(i);
-                System.out.println("Data berhasil dihapus!");
-                return;
-            }
-        }
-        System.out.println("Produk dengan ID " + ID + " tidak ditemukan!");
+    public void changeGPU(Gpu newGPU) {
+        gpu = newGPU;
+        System.out.println("GPU berhasil diganti menjadi " + newGPU.getNama() + ".");
     }
 
-    // Mencari dan menampilkan data produk berdasarkan ID
-    public static void searchData() {
-        System.out.print("Masukkan ID data yang ingin dicari: ");
-        String ID = scanner.next();
-        
-        for (Classnya pet : dataClassnya) {
-            if (pet.getID().equals(ID)) {
-                System.out.println("+----------------------------------+");
-                System.out.println("ID             : " + pet.getID());
-                System.out.println("Nama Produk    : " + pet.getNamaProduk());
-                
-                System.out.println("Kategori       : " + pet.getKategori());
-                System.out.println("Harga          : " + pet.getHarga());
-                System.out.println("+----------------------------------+");
-                return;
-            }
-        }
-        System.out.println("Produk dengan ID " + ID + " tidak ditemukan!");
-    }
+    public void tampilkanInfo() {
+        System.out.println("\n======= Spesifikasi " + nama + " =======");
+        System.out.println("CPU     : " + cpu.getMerk() + " " + cpu.getNama() + " (" + cpu.getJumlahCore() + " Core, " + cpu.getKecepatanGHz() + " GHz, OC max " + cpu.getMaxOverclock() + " GHz)");
+        System.out.println("GPU     : " + gpu.getMerk() + " " + gpu.getNama() + " (" + gpu.getVramGB() + " GB, OC max " + gpu.getMaxOverclock() + " GHz)");
 
-    // Metode utama yang menampilkan menu dan menangani input pengguna
+        for (int i = 0; i < ramList.size(); i++)
+            System.out.println("RAM " + (i+1) + "   : " + ramList.get(i).getMerk() + " " + ramList.get(i).getNama() + " (" + ramList.get(i).getKapasitasGB() + " GB, " + ramList.get(i).getDdr() + ")");
+    }
+}
+
+// Main Program
+
+class Main {
     public static void main(String[] args) {
-        int pilihan;
-        System.out.println("Welcome To Noov Classnya");
-        
-        do {
-            System.out.println("1 | Show\n2 | Add\n3 | Change\n4 | Delete\n5 | Search\n0 | Exit");
-            System.out.print("Pilih Menu: ");
-            pilihan = scanner.nextInt();
-            
-            switch (pilihan) {
-                case 1: showData(); break;
-                case 2: addData(); break;
-                case 3: changeData(); break;
-                case 4: deleteData(); break;
-                case 5: searchData(); break;
-                case 0: System.out.println("Thank You!"); break;
-                default: System.out.println("Pilihan tidak valid!");
-            }
-        } while (pilihan != 0);
-        
-        scanner.close(); // Menutup scanner untuk menghindari kebocoran sumber daya
+        Komputer pc = new Komputer("PC Gaming", 
+            new Cpu(8, 3.6, 5.0, "Intel", "Core i7-12700K"), 
+            new Gpu(12, 2.3, "NVIDIA", "RTX 3060"), 
+            new ArrayList<>(Arrays.asList(new Ram(16, "DDR5", "Corsair", "Vengeance"))), 
+            new ArrayList<>(Arrays.asList(new Storage(1000, "SSD", "Samsung", "EVO"))), 
+            new Psu(750, "Gold", "Seasonic", "Focus Plus"));
+
+        pc.tampilkanInfo();
     }
 }

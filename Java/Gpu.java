@@ -1,18 +1,19 @@
-public class Gpu {
+public class Gpu extends Komponen {
     private int vramGB;
-    private double maxOverclock;
-    private String merk;
-    private String nama;
+    private double kecepatanClock;
+    private OverclockLimit overclockLimit;
 
-    public Gpu(int vramGB, double maxOverclock, String merk, String nama) {
+    public Gpu(int vramGB, double kecepatanClock, double maxOverclock, String merk, String nama) {
+        super(merk, nama);
         this.vramGB = vramGB;
-        this.maxOverclock = maxOverclock;
-        this.merk = merk;
-        this.nama = nama;
+        this.kecepatanClock = kecepatanClock;
+        this.overclockLimit = new OverclockLimit(maxOverclock);
     }
 
     public int getVramGB() { return vramGB; }
-    public double getMaxOverclock() { return maxOverclock; }
-    public String getMerk() { return merk; }
-    public String getNama() { return nama; }
+    public double getKecepatanClock() { return kecepatanClock; }
+    public double getMaxOverclock() { return overclockLimit.getMaxOverclock(); }
+
+    public void setKecepatanClock(double kecepatanClock) { this.kecepatanClock = kecepatanClock; }
+    public void setMaxOverclock(double maxOverclock) { this.overclockLimit.setMaxOverclock(maxOverclock); }
 }

@@ -1,71 +1,41 @@
-#include <iostream>
-#include <vector>
-using namespace std;
+#include "Komputer.cpp"
 
-// Kelas Komponen sebagai superclass
-class Komponen {
-protected:
-    string Nama;
-    string Merk;
-public:
-    Komponen(string nama, string merk) : Nama(nama), Merk(merk) {}
-    virtual void tampilkanInfo() {
-        cout << "Nama: " << Nama << ", Merk: " << Merk << endl;
-    }
-};
-
-// Kelas Overclockable untuk multiple inheritance
-class Overclockable {
-protected:
-    float OverclockLimit;
-public:
-    Overclockable(float limit) : OverclockLimit(limit) {}
-    void tampilkanOverclockInfo() {
-        cout << "Overclock Limit: " << OverclockLimit << " GHz" << endl;
-    }
-};
-
-// Kelas Processor mewarisi Komponen dan Overclockable
-class Processor : public Komponen, public Overclockable {
-private:
-    float ClockSpeed;
-    float MaxTDP;
-public:
-    Processor(string nama, string merk, float clock, float tdp, float limit)
-        : Komponen(nama, merk), Overclockable(limit), ClockSpeed(clock), MaxTDP(tdp) {}
-
-    void tampilkanInfo() override {
-        Komponen::tampilkanInfo();
-        cout << "Clock Speed: " << ClockSpeed << " GHz, Max TDP: " << MaxTDP << "W" << endl;
-        tampilkanOverclockInfo();
-    }
-};
-
-// Kelas Graphic mewarisi Komponen dan Overclockable
-class Graphic : public Komponen, public Overclockable {
-private:
-    float VramGB;
-    float MaxTDP;
-public:
-    Graphic(string nama, string merk, float vram, float tdp, float limit)
-        : Komponen(nama, merk), Overclockable(limit), VramGB(vram), MaxTDP(tdp) {}
-
-    void tampilkanInfo() override {
-        Komponen::tampilkanInfo();
-        cout << "VRAM: " << VramGB << " GB, Max TDP: " << MaxTDP << "W" << endl;
-        tampilkanOverclockInfo();
-    }
-};
-
-// Main Program
 int main() {
-    Processor cpu("Intel i9", "Intel", 3.5, 125, 5.2);
-    Graphic gpu("RTX 4080", "NVIDIA", 16, 320, 2.8);
+    // Membuat objek awal
+    Cpu cpu(8, 3.6, 5.0, "Intel", "Core i7-12700K");
+    Gpu gpu(12, 2.3, "NVIDIA", "RTX 3060");
+    Ram ram1(16, "DDR5", "Corsair", "Vengeance");
+    Storage storage1(1000, "SSD", "Samsung", "EVO");
+    Psu psu(750, "Seasonic", "Focus Plus", "Gold");
 
-    cout << "=== Info Processor ===" << endl;
-    cpu.tampilkanInfo();
-    cout << "\n=== Info GPU ===" << endl;
-    gpu.tampilkanInfo();
+
+    // Membuat komputer
+    Komputer pc("PC Gaming", cpu, gpu, {ram1}, {storage1}, psu);
+    pc.tampilkanInfo();
+
+    // Menambahkan RAM
+    Ram ram2(16, "DDR5", "G.Skill", "Trident Z");
+    pc.addRAM(ram2);
+    pc.tampilkanInfo();
+
+    // Menghapus RAM pertama
+    pc.removeRAM(0);
+    pc.tampilkanInfo();
+
+    // Mengganti CPU
+    Cpu newCPU(10, 4.0, 5.5, "AMD", "Ryzen 9 5900X");
+    pc.changeCPU(newCPU);
+    pc.tampilkanInfo();
+
+    // Mengganti GPU
+    Gpu newGPU(16, 2.7, "AMD", "RX 6800 XT");
+    pc.changeGPU(newGPU);
+    pc.tampilkanInfo();
+
+    // Mengganti Storage
+    Storage newStorage(2000, "SSD", "Western Digital", "Black SN850");
+    pc.changeStorage(0, newStorage);
+    pc.tampilkanInfo();
 
     return 0;
 }

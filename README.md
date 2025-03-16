@@ -16,11 +16,6 @@ Fitur utama program ini meliputi:
 - Menampilkan informasi spesifikasi komputer secara real-time
 - Menggunakan konsep Object-Oriented Programming (OOP) dengan pemisahan kelas
 
-Program ini telah diimplementasikan dalam tiga bahasa pemrograman:
-- **C++**
-- **Java**
-- **Python**
-
 ## Alur Program
 1. Membuat objek komponen seperti CPU, GPU, RAM, Storage, dan PSU.
 2. Membuat objek komputer dengan komponen awal.

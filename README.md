@@ -32,6 +32,9 @@ Program ini telah diimplementasikan dalam tiga bahasa pemrograman:
 5. Program berjalan hingga semua operasi selesai.
 
 ## Struktur Kelas dan Hubungannya
+### Diagram OOP
+![Screenshot 2025-03-16 103346](https://github.com/user-attachments/assets/2c16c548-8b7e-4547-8168-7e3f5e4a8ef2)
+
 ### **Komponen (Superclass / Parent Class)**
 - Atribut:
   - `merk` (String) → Merek komponen

@@ -103,45 +103,10 @@ Program ini telah diimplementasikan dalam tiga bahasa pemrograman:
 1. **Inheritance (Pewarisan)**
    - CPU, GPU, RAM, Storage, dan PSU merupakan subclass dari Komponen.
    - CPU dan GPU memiliki tambahan fitur overclock.
-2. **Composition (Komposisi)**
+2. **Multiple Inheritance**
+   - CPU dan GPU memiliki 2 parent yaitu kelas Overclock dan Komponen
+4. **Composition (Komposisi)**
    - Komputer terdiri dari berbagai komponen sebagai bagian integralnya.
    - RAM dan Storage menggunakan List untuk menampung lebih dari satu komponen.
    - Jika Komputer dihapus, objek komponennya masih dapat digunakan di tempat lain.
-
-## Cara Menjalankan Program
-
-### C++
-1. Pastikan compiler C++ (misalnya `g++`) telah terinstal.
-2. Compile program:  
-   ```sh
-   g++ -o program main.cpp Cpu.cpp Gpu.cpp Ram.cpp Storage.cpp Psu.cpp Komputer.cpp
-   ```
-3. Jalankan program:  
-   ```sh
-   ./program
-   ```
-
-### Java
-1. Pastikan Java Development Kit (JDK) telah terinstal.
-2. Compile program:  
-   ```sh
-   javac *.java
-   ```
-3. Jalankan program:  
-   ```sh
-   java App
-   ```
-
-### Python
-1. Pastikan Python telah terinstal.
-2. Jalankan program:  
-   ```sh
-   python main.py
-   ```
-
-## Catatan
-- Pastikan setiap file berada dalam satu folder yang sama agar program berjalan dengan benar.
-- Jika terjadi error, periksa kembali dependensi dan pastikan semua file telah dikompilasi.
-
-Selamat mencoba! 🚀
 

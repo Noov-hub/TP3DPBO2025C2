@@ -33,7 +33,7 @@ Program ini telah diimplementasikan dalam tiga bahasa pemrograman:
 
 ## Struktur Kelas dan Hubungannya
 ### Diagram OOP
-![image](https://github.com/user-attachments/assets/c8f9bfc5-49b0-453c-ab68-e4e8cdf2746d)
+![image](https://github.com/user-attachments/assets/ebad4478-9d35-48a3-85a0-dca9cff1aaa5)
 ### **Komponen (Superclass / Parent Class)**
 - Atribut:
   - `merk` (String) → Merek komponen

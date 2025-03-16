@@ -107,3 +107,13 @@ Fitur utama program ini meliputi:
    - Komputer terdiri dari berbagai komponen sebagai bagian integralnya.
    - RAM dan Storage menggunakan List untuk menampung lebih dari satu komponen.
    - Jika Komputer dihapus, objek komponennya masih dapat digunakan di tempat lain.
+
+### Dokum CPP
+![Screenshot 2025-03-16 105946](https://github.com/user-attachments/assets/8597ef50-52db-4194-86a0-2b9b95c257b1)
+
+### Dokum Python
+![Screenshot 2025-03-16 103748](https://github.com/user-attachments/assets/520b2209-2f35-436d-ae19-7168221ffb2d)
+
+### Dokum java
+![Screenshot 2025-03-16 103946](https://github.com/user-attachments/assets/ba577ddc-28a8-42ab-a4ef-9814a3c961a8)
+

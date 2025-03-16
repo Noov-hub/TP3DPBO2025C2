@@ -95,7 +95,7 @@ public:
         for (size_t i = 0; i < storageList.size(); i++)
             cout << "Storage " << i+1 << " : " << storageList[i].getTipeDrive() << " " << storageList[i].getMerk() << " " << storageList[i].getNama() << " (" << storageList[i].getKapasitasGB() << " GB)\n";
 
-        cout << "PSU     : " << psu.getMerk() << " " << psu.getNama() << psu.getSertifikasi() << " (" << psu.getWatt() << "W)\n";
+        cout << "PSU     : " << psu.getMerk() << " " << psu.getNama() << " " << psu.getSertifikasi() << " (" << psu.getWatt() << "W)" << "\n";
     }
 
     ~Komputer() {}

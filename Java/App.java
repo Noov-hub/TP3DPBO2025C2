@@ -22,36 +22,36 @@ public class App {
 
         // Menambahkan RAM
         Ram ram2 = new Ram(16, "DDR5", "G.Skill", "Trident Z");
-        System.out.println("\nMenambahkan RAM...");
+
         pc.addRam(ram2);
         pc.tampilkanInfo();
 
         // Menghapus RAM pertama
-        System.out.println("\nMenghapus RAM pertama...");
+
         pc.removeRam(0);
         pc.tampilkanInfo();
 
         // Mengganti CPU
         Cpu newCPU = new Cpu(10, 4.0, 5.5, "AMD", "Ryzen 9 5900X");
-        System.out.println("\nMengganti CPU...");
+
         pc.changeCpu(newCPU);
         pc.tampilkanInfo();
 
         // Mengganti GPU
         Gpu newGPU = new Gpu(16, 2.7, 5.0, "AMD", "RX 6800 XT");
-        System.out.println("\nMengganti GPU...");
+
         pc.changeGpu(newGPU);
         pc.tampilkanInfo();
 
         // Mengganti Storage
         Storage newStorage = new Storage(2000, "SSD", "Western Digital", "Black SN850");
-        System.out.println("\nMengganti Storage pertama...");
+
         pc.changeStorage(0, newStorage);
         pc.tampilkanInfo();
 
         // Mengganti PSU
         Psu newPSU = new Psu(850, "Platinum", "Corsair", "RM850x");
-        System.out.println("\nMengganti PSU...");
+
         pc.changePsu(newPSU);
         pc.tampilkanInfo();
     }

@@ -11,7 +11,7 @@ private:
 public:
     Psu() {}
 
-    Psu(int watt, string sertifikasi, string merk, string nama)
+    Psu(int watt, string merk, string nama, string sertifikasi)
         : Komponen(merk, nama) {
         this->watt = watt;
         this->sertifikasi = sertifikasi;

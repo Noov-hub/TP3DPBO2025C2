@@ -43,18 +43,22 @@ Program ini telah diimplementasikan dalam tiga bahasa pemrograman:
   - Getter dan setter untuk atribut di atas.
   - `displayInfo()` → Menampilkan informasi komponen.
 
-### **CPU dan GPU (Subclass dari Komponen)**
+### **OverclockLimit (Superclass tambahan untuk CPU & GPU)**
+- Atribut:
+  - `maxOverclock` (double) → Kecepatan maksimum overclock.
+- Metode:
+  - Getter dan setter untuk `maxOverclock`.
+
+### **CPU dan GPU (Subclass dari Komponen dan OverclockLimit)**
 - **CPU:**
   - Atribut tambahan:
     - `jumlahCore` (int) → Jumlah core CPU.
     - `kecepatanGHz` (double) → Kecepatan dasar dalam GHz.
-    - `maxOverclock` (double) → Kecepatan maksimum overclock.
   - Metode tambahan:
     - Getter dan setter untuk atribut tambahan.
 - **GPU:**
   - Atribut tambahan:
     - `vramGB` (int) → Kapasitas memori VRAM dalam GB.
-    - `maxOverclock` (double) → Kecepatan maksimum overclock GPU.
   - Metode tambahan:
     - Getter dan setter untuk atribut tambahan.
 
@@ -101,12 +105,11 @@ Program ini telah diimplementasikan dalam tiga bahasa pemrograman:
 
 ### **Hubungan Antar Kelas**
 1. **Inheritance (Pewarisan)**
-   - CPU, GPU, RAM, Storage, dan PSU merupakan subclass dari Komponen.
-   - CPU dan GPU memiliki tambahan fitur overclock.
+   - CPU dan GPU merupakan subclass dari Komponen dan OverclockLimit (multiple inheritance).
+   - RAM, Storage, dan PSU merupakan subclass dari Komponen.
 2. **Multiple Inheritance**
    - CPU dan GPU memiliki 2 parent yaitu kelas Overclock dan Komponen
-4. **Composition (Komposisi)**
+3. **Composition (Komposisi)**
    - Komputer terdiri dari berbagai komponen sebagai bagian integralnya.
    - RAM dan Storage menggunakan List untuk menampung lebih dari satu komponen.
    - Jika Komputer dihapus, objek komponennya masih dapat digunakan di tempat lain.
-
